@@ -1,20 +1,20 @@
 ﻿using System.Threading;
 using Shtirlitz.Common;
 
-namespace Shtirlitz.Archiver
+namespace Shtirlitz.Sender
 {
     /// <summary>
-    /// Archives all the info into the one file.
+    /// Describes an interface of the report sender.
     /// </summary>
-    public interface IArchiver
+    public interface ISender
     {
         /// <summary>
-        /// Adds all the files from <paramref name="rootPath"/> to the archive file with the name <paramref name="archiveFilename"/>.
+        /// Sends the report file at <paramref name="archiveFilename"/>.
         /// 
         /// Supply the <paramref name="progressCallback"/> with an appropriate function, if you want the reports on a progress.
         /// 
         /// This method should execute synchronously and only exit when all of the work was done.
         /// </summary>
-        void Archive(string rootPath, string archiveFilename, CancellationToken cancellationToken, SimpleProgressCallback progressCallback = null);
+        void Send(string archiveFilename, CancellationToken cancellationToken, SimpleProgressCallback progressCallback = null);
     }
 }

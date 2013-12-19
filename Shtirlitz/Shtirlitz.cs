@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Shtirlitz.Archiver;
 using Shtirlitz.Common;
 using Shtirlitz.Reporter;
+using Shtirlitz.Sender;
 
 namespace Shtirlitz
 {
@@ -13,18 +14,20 @@ namespace Shtirlitz
     {
         private readonly IList<IReporter> reporters;
         private readonly IArchiver archiver;
+        private readonly IList<ISender> senders;
 
         /// <summary>
         /// Initializes Shtirlitz with the default archiver.
         /// </summary>
-        public Shtirlitz(IList<IReporter> reporters)
-            : this(reporters, ArchiverStage.DefaultArchiver)
+        public Shtirlitz(IList<IReporter> reporters, IList<ISender> senders)
+            : this(reporters, ArchiverStage.DefaultArchiver, senders)
         { }
 
-        public Shtirlitz(IList<IReporter> reporters, IArchiver archiver)
+        public Shtirlitz(IList<IReporter> reporters, IArchiver archiver, IList<ISender> senders)
         {
             this.reporters = reporters;
             this.archiver = archiver;
+            this.senders = senders;
         }
 
         public Task<string> Start(CancellationToken cancellationToken, string archiveFilename = null)
@@ -92,10 +95,16 @@ namespace Shtirlitz
             // then archive all the files
             stages.Add(new ArchiverStage(rootPath, archiveFilename, archiver, cancellationToken));
 
-            // then clean them up
+            // then clean the original temporary directory up
             if (cleanup)
             {
                 stages.Add(new CleanupStage(rootPath, cancellationToken));
+            }
+
+            // then send the archive file
+            foreach (ISender sender in senders)
+            {
+                stages.Add(new SenderStage(archiveFilename, sender, cancellationToken));
             }
 
             // pack all the stages into the stage runner

@@ -12,6 +12,8 @@ namespace Shtirlitz.Reporter
         /// Dumps all the information on disk relative to the <paramref name="rootPath"/>.
         /// 
         /// Supply the <paramref name="progressCallback"/> with an appropriate function, if you want the reports on a progress.
+        /// 
+        /// This method should execute synchronously and only exit when all of the work was done.
         /// </summary>
         void Report(string rootPath, CancellationToken cancellationToken, SimpleProgressCallback progressCallback = null);
 

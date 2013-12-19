@@ -62,6 +62,9 @@
     <Compile Include="Reporter\ReporterStage.cs" />
     <Compile Include="ReportGeneratedEventArgs.cs" />
     <Compile Include="ReportStageType.cs" />
+    <Compile Include="Sender\ArchiveRemover.cs" />
+    <Compile Include="Sender\ISender.cs" />
+    <Compile Include="Sender\SenderStage.cs" />
     <Compile Include="Shtirlitz.cs" />
   </ItemGroup>
   <ItemGroup>

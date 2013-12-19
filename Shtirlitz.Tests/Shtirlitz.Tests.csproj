@@ -46,7 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveRemoverTests.cs" />
+    <Compile Include="Dummies\DummyReporter.cs" />
+    <Compile Include="Dummies\DummySender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShtirlitzBaseTestClass.cs" />
     <Compile Include="ShtirlitzTests.cs" />
     <Compile Include="StageRunnerTests.cs" />
   </ItemGroup>
