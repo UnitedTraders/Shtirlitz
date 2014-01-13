@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Shtirlitz.Archiver;
 using Shtirlitz.Reporter;
 using Shtirlitz.Sender;
 using Shtirlitz.Tests.Dummies;
@@ -12,7 +13,7 @@ namespace Shtirlitz.Tests
     /// <summary>
     /// Base class for the tests that creates a shtirlitz and cleans up after running a test.
     /// </summary>
-    public abstract class ShtirlitzBaseTestClass
+    public abstract class ShtirlitzBaseTestClass : IDisposable
     {
         private readonly DummyReporter reporter = new DummyReporter();
         private readonly DummySender dummySender = new DummySender();
@@ -37,7 +38,7 @@ namespace Shtirlitz.Tests
                 senders.AddRange(otherSenders);
             }
 
-            shtirlitz = new Shtirlitz(reporters, senders);
+            shtirlitz = new Shtirlitz(reporters, new DotNetZipArchiver(), senders);
 
             // generate archive file name
             archiveFilename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".zip");

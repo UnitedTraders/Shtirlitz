@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Ionic.Zip;
 using Shtirlitz.Common;
 

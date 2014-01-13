@@ -16,13 +16,6 @@ namespace Shtirlitz
         private readonly IArchiver archiver;
         private readonly IList<ISender> senders;
 
-        /// <summary>
-        /// Initializes Shtirlitz with the default archiver.
-        /// </summary>
-        public Shtirlitz(IList<IReporter> reporters, IList<ISender> senders)
-            : this(reporters, ArchiverStage.DefaultArchiver, senders)
-        { }
-
         public Shtirlitz(IList<IReporter> reporters, IArchiver archiver, IList<ISender> senders)
         {
             this.reporters = reporters;

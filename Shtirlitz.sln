@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shtirlitz", "Shtirlitz\Shti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shtirlitz.Tests", "Shtirlitz.Tests\Shtirlitz.Tests.csproj", "{10EB3ADC-0847-40CD-9696-A1A937EE7B46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shtirlitz.Library", "Shtirlitz.Library\Shtirlitz.Library.csproj", "{9ED65761-C95A-4D66-88C7-EE1B333ED07C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{10EB3ADC-0847-40CD-9696-A1A937EE7B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10EB3ADC-0847-40CD-9696-A1A937EE7B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10EB3ADC-0847-40CD-9696-A1A937EE7B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED65761-C95A-4D66-88C7-EE1B333ED07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED65761-C95A-4D66-88C7-EE1B333ED07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED65761-C95A-4D66-88C7-EE1B333ED07C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED65761-C95A-4D66-88C7-EE1B333ED07C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
