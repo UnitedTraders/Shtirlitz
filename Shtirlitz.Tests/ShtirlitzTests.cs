@@ -98,7 +98,14 @@ namespace Shtirlitz.Tests
         public void RaisesNegativeEventsOnCancel()
         {
             bool cancelEventCalled = false;
-            Shtirlitz.ReportCanceled += (sender, args) => cancelEventCalled = true;
+            bool hasFailed = false;
+            Exception exception = null;
+            Shtirlitz.ReportCanceled += (sender, args) =>
+                {
+                    cancelEventCalled = true;
+                    hasFailed = args.HasFailed;
+                    exception = args.Exception;
+                };
 
             TokenSource.Cancel();
 
@@ -108,13 +115,27 @@ namespace Shtirlitz.Tests
             Thread.Sleep(1000);
 
             Assert.True(cancelEventCalled);
+            Assert.False(hasFailed);
+
+            AggregateException aggregateException = exception as AggregateException;
+            Assert.NotNull(aggregateException);
+// ReSharper disable PossibleNullReferenceException
+            Assert.IsType<OperationCanceledException>(aggregateException.InnerException);
+// ReSharper restore PossibleNullReferenceException
         }
 
         [Fact]
         public void RaisesNegativeEventsOnFail()
         {
             bool cancelEventCalled = false;
-            Shtirlitz.ReportCanceled += (sender, args) => cancelEventCalled = true;
+            bool hasFailed = false;
+            Exception exception = null;
+            Shtirlitz.ReportCanceled += (sender, args) =>
+            {
+                cancelEventCalled = true;
+                hasFailed = args.HasFailed;
+                exception = args.Exception;
+            };
 
             Reporter.ShouldFail = true;
 
@@ -124,6 +145,13 @@ namespace Shtirlitz.Tests
             Thread.Sleep(1000);
 
             Assert.True(cancelEventCalled);
+            Assert.True(hasFailed);
+
+            AggregateException aggregateException = exception as AggregateException;
+            Assert.NotNull(aggregateException);
+// ReSharper disable PossibleNullReferenceException
+            Assert.IsType<InvalidOperationException>(aggregateException.InnerException);
+// ReSharper restore PossibleNullReferenceException
         }
 
         [Fact]

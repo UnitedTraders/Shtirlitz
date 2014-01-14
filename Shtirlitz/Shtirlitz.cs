@@ -61,9 +61,14 @@ namespace Shtirlitz
             mainTask.ContinueWith(t => RaiseReportGenerated(t.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
 
             // and the cancel continuation
-            mainTask.ContinueWith(t => FullCleanup(localRootPath, archiveFilename, t.Status != TaskStatus.Canceled), TaskContinuationOptions.NotOnRanToCompletion);
+            mainTask.ContinueWith(t => FullCleanup(localRootPath, archiveFilename, !IsCanceled(t), t.Exception), TaskContinuationOptions.NotOnRanToCompletion);
 
             return mainTask;
+        }
+
+        private static bool IsCanceled(Task task)
+        {
+            return task.Status == TaskStatus.Canceled || (task.Status == TaskStatus.Faulted && task.Exception != null && task.Exception.InnerException is OperationCanceledException);
         }
 
         /// <summary>
@@ -133,12 +138,12 @@ namespace Shtirlitz
             }
         }
 
-        private void FullCleanup(string rootPath, string archiveFilename, bool hasFailed)
+        private void FullCleanup(string rootPath, string archiveFilename, bool hasFailed, Exception exception)
         {
             PerformFullCleanup(rootPath, archiveFilename);
 
             // notify about report generation cancellation
-            RaiseReportCanceled(hasFailed);
+            RaiseReportCanceled(hasFailed, exception);
         }
 
         public event EventHandler<GenerationProgressEventArgs> GenerationProgress;
@@ -165,12 +170,12 @@ namespace Shtirlitz
 
         public event EventHandler<ReportCanceledEventArgs> ReportCanceled;
 
-        protected virtual void RaiseReportCanceled(bool hasFailed)
+        protected virtual void RaiseReportCanceled(bool hasFailed, Exception exception)
         {
             EventHandler<ReportCanceledEventArgs> handler = ReportCanceled;
             if (handler != null)
             {
-                handler(this, new ReportCanceledEventArgs(hasFailed));
+                handler(this, new ReportCanceledEventArgs(hasFailed, exception));
             }
         }
     }

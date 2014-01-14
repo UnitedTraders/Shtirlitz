@@ -6,10 +6,12 @@ namespace Shtirlitz
     public class ReportCanceledEventArgs : EventArgs
     {
         private readonly bool hasFailed;
+        private readonly Exception exception;
 
-        public ReportCanceledEventArgs(bool hasFailed)
+        public ReportCanceledEventArgs(bool hasFailed, Exception exception = null)
         {
             this.hasFailed = hasFailed;
+            this.exception = exception;
         }
 
         /// <summary>
@@ -18,6 +20,14 @@ namespace Shtirlitz
         public bool HasFailed
         {
             get { return hasFailed; }
+        }
+
+        /// <summary>
+        /// If the report generation failed, gets the exception that caused the operation to fail.
+        /// </summary>
+        public Exception Exception
+        {
+            get { return exception; }
         }
     }
 }
