@@ -74,6 +74,9 @@ namespace Shtirlitz.Reporter
 
                 // report progress
                 progressCallback.TryInvoke((i+1d) / aliases.Length);
+
+                // exit, if cancellation was requested
+                cancellationToken.ThrowIfCancellationRequested();
             }
         }
 
