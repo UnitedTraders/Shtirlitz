@@ -49,6 +49,7 @@
     <Compile Include="GenerationProgressEventArgs.cs" />
     <Compile Include="IShtirlitz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportCanceledEventArgs.cs" />
     <Compile Include="Reporter\IReporter.cs" />
     <Compile Include="Reporter\MultiFileReporter.cs" />
     <Compile Include="Reporter\ReporterStage.cs" />

@@ -61,7 +61,7 @@ namespace Shtirlitz
             mainTask.ContinueWith(t => RaiseReportGenerated(t.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
 
             // and the cancel continuation
-            mainTask.ContinueWith(t => FullCleanup(localRootPath, archiveFilename), TaskContinuationOptions.NotOnRanToCompletion);
+            mainTask.ContinueWith(t => FullCleanup(localRootPath, archiveFilename, t.Status != TaskStatus.Canceled), TaskContinuationOptions.NotOnRanToCompletion);
 
             return mainTask;
         }
@@ -133,12 +133,12 @@ namespace Shtirlitz
             }
         }
 
-        private void FullCleanup(string rootPath, string archiveFilename)
+        private void FullCleanup(string rootPath, string archiveFilename, bool hasFailed)
         {
             PerformFullCleanup(rootPath, archiveFilename);
 
             // notify about report generation cancellation
-            RaiseReportCanceled();
+            RaiseReportCanceled(hasFailed);
         }
 
         public event EventHandler<GenerationProgressEventArgs> GenerationProgress;
@@ -163,14 +163,14 @@ namespace Shtirlitz
             }
         }
 
-        public event EventHandler ReportCanceled;
+        public event EventHandler<ReportCanceledEventArgs> ReportCanceled;
 
-        protected virtual void RaiseReportCanceled()
+        protected virtual void RaiseReportCanceled(bool hasFailed)
         {
-            EventHandler handler = ReportCanceled;
+            EventHandler<ReportCanceledEventArgs> handler = ReportCanceled;
             if (handler != null)
             {
-                handler(this, EventArgs.Empty);
+                handler(this, new ReportCanceledEventArgs(hasFailed));
             }
         }
     }

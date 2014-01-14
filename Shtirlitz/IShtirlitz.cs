@@ -32,6 +32,6 @@ namespace Shtirlitz
         /// 
         /// Also, raised if report generation was interrupted due to an error.
         /// </summary>
-        event EventHandler ReportCanceled;
+        event EventHandler<ReportCanceledEventArgs> ReportCanceled;
     }
 }
