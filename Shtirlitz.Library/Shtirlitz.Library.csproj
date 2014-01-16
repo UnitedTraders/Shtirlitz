@@ -46,6 +46,8 @@
     <Compile Include="Reporter\WmiDumper.cs" />
     <Compile Include="Sender\ArchiveRemover.cs" />
     <Compile Include="Sender\ClipboardCopier.cs" />
+    <Compile Include="Sender\MailInfo.cs" />
+    <Compile Include="Sender\SmtpMailer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
