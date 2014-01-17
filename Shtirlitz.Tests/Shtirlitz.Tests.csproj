@@ -49,6 +49,7 @@
     <Compile Include="ShtirlitzBaseTestClass.cs" />
     <Compile Include="ShtirlitzTests.cs" />
     <Compile Include="StageRunnerTests.cs" />
+    <Compile Include="TimeReporterTests.cs" />
     <Compile Include="WmiDumperTests.cs" />
   </ItemGroup>
   <ItemGroup>
