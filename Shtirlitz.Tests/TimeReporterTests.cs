@@ -2,50 +2,50 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Shtirlitz.Reporter.TimeReporter;
 using Xunit;
 
 namespace Shtirlitz.Tests
 {
     public class TimeReporterTests : ShtirlitzBaseTestClass
     {
-        private readonly TimeReporter _reporter;
-        private static DateTimeOffset _customTime = new DateTime(2014, 1, 15, 0, 0, 0);
+        private static readonly DateTimeOffset CustomTime = new DateTime(2014, 1, 15, 0, 0, 0);
 
-        #region Constructors
+        private readonly TimeReporter reporter;
+
         public TimeReporterTests()
-            : this(new TimeReporter(new TestTimeProvider(_customTime)))
+            : this(new TimeReporter(new TestTimeProvider(CustomTime)))
         {
         }
 
         public TimeReporterTests(TimeReporter reporter)
             : base(new List<IReporter> { reporter })
         {
-            _reporter = reporter;
+            this.reporter = reporter;
         }
-        #endregion
 
         [Fact]
-        public void TimeReporter_ReportTest()
+        public void CreatesTheRightFile()
         {
             // act
             RunSynchronously(false);
 
             // assert
-            Assert.True(File.Exists(Path.Combine(RootPath, _reporter.GetFileNameFromTime(_customTime))));
+            Assert.True(File.Exists(Path.Combine(RootPath, reporter.GetFileNameFromTime(CustomTime))));
         }
 
-        class TestTimeProvider : ITimeProvider
+        private class TestTimeProvider : ITimeProvider
         {
-            DateTimeOffset _time;
+            private readonly DateTimeOffset time;
 
             public TestTimeProvider(DateTimeOffset time)
             {
-                _time = time;
+                this.time = time;
             }
 
             public DateTimeOffset GetTime()
             {
-                return _time;
+                return time;
             }
         }
     }

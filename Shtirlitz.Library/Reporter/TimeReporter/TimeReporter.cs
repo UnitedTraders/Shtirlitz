@@ -3,29 +3,25 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace Shtirlitz.Reporter
+namespace Shtirlitz.Reporter.TimeReporter
 {
     /// <summary>
     /// Report time
     /// </summary>
     public class TimeReporter : IReporter
     {
-        ITimeProvider _timeProvider;
+        private readonly ITimeProvider timeProvider;
 
-        #region Constructors
         public TimeReporter()
             : this(new CurrentTimeProvider())
-        {
-        }
+        { }
 
         public TimeReporter(ITimeProvider timeProvider)
         {
-            if (timeProvider == null)
-                throw new ArgumentNullException("timeProvider");
+            if (timeProvider == null) throw new ArgumentNullException("timeProvider");
 
-            _timeProvider = timeProvider;
+            this.timeProvider = timeProvider;
         }
-        #endregion
 
         public double Weight
         {
@@ -34,13 +30,13 @@ namespace Shtirlitz.Reporter
 
         public string Name
         {
-            get { return "Gets system time"; }
+            get { return "Getting current time"; }
         }
 
         public void Report(string rootPath, CancellationToken cancellationToken, SimpleProgressCallback progressCallback = null)
         {
             // get a file name for the report
-            string filename = Path.Combine(rootPath, GetFileNameFromTime(_timeProvider.GetTime()));
+            string filename = Path.Combine(rootPath, GetFileNameFromTime(timeProvider.GetTime()));
 
             // create report file
             try
@@ -58,7 +54,8 @@ namespace Shtirlitz.Reporter
 
         public string GetFileNameFromTime(DateTimeOffset time)
         {
-            return string.Format("{0}.txt", time).Replace(":", ".");
+            return string.Format("{0:yyyy-MM-dd HH.mm.ss.ffff zzz}.txt", time)
+                         .Replace(":", "."); // replaces colon in time zone offset
         }
     }
 }

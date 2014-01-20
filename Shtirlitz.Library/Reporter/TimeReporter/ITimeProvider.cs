@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shtirlitz.Reporter
+namespace Shtirlitz.Reporter.TimeReporter
 {
     public interface ITimeProvider
     {
