@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Archiver\DotNetZipArchiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporter\ThreadsDumpReporter\ThreadDump.cs" />
+    <Compile Include="Reporter\ThreadsDumpReporter\ThreadsDumpReporter.cs" />
     <Compile Include="Reporter\TimeReporter\CurrentTimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\ITimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\TimeReporter.cs" />
