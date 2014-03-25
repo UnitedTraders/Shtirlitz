@@ -84,3 +84,8 @@ An interface of any stage has one main method which receives, among other things
 
 * Periodically execute `cancellationToken.ThrowIfCancellationRequested()` to allow for the cancellation of the report generation in the middle of the stage. `Shtirlitz` will, again, handle the thrown exception and perform the needed cleanup/event raising.
 * Report its progress by executing the supplied progress callback specifying the progress as a number between `0.0` and `1.0`. To handle the `null`-ness of the progress callback, the `ProgressCallbackUtil.TryInvoke` extension method is implemented: just write `progressCallback.TryInvoke(/* progress calculation formula */);` and it'll complete successfully even if `progressCallback` is null.
+
+License
+-------
+
+Copyright 2013, 2014 by Slava Kolobaev. This work is made available under the terms of the Creative Commons Attribution 3.0 license, http://creativecommons.org/licenses/by/3.0/
