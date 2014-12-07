@@ -33,8 +33,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CorApi">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\CorApi.dll</HintPath>
+    </Reference>
+    <Reference Include="CorApiRaw">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\CorApiRaw.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>$(SolutionDir)packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="MDbgEng">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MDbgEng.dll</HintPath>
+    </Reference>
+    <Reference Include="MDbgExt">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MDbgExt.dll</HintPath>
+    </Reference>
+    <Reference Include="MdbgUtility">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MdbgUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="NativeDebugWrappers">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\NativeDebugWrappers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,12 +62,14 @@
   <ItemGroup>
     <Compile Include="Archiver\DotNetZipArchiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporter\ThreadReporter.cs" />
     <Compile Include="Reporter\TimeReporter\CurrentTimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\ITimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\TimeReporter.cs" />
     <Compile Include="Reporter\WmiDumper.cs" />
     <Compile Include="Sender\ArchiveRemover.cs" />
     <Compile Include="Sender\ClipboardCopier.cs" />
+    <Compile Include="Sender\IvanDesktop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
