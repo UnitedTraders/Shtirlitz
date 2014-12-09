@@ -26,5 +26,7 @@ namespace Shtirlitz.Reporter
                 process.WaitForExit();
             }
         }
+
+
     }
 }

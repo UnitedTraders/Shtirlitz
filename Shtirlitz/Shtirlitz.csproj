@@ -32,6 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CorApi">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\CorApi.dll</HintPath>
+    </Reference>
+    <Reference Include="CorApiRaw">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\CorApiRaw.dll</HintPath>
+    </Reference>
+    <Reference Include="MDbgEng">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MDbgEng.dll</HintPath>
+    </Reference>
+    <Reference Include="MDbgExt">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MDbgExt.dll</HintPath>
+    </Reference>
+    <Reference Include="MdbgUtility">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\MdbgUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="NativeDebugWrappers">
+      <HintPath>..\packages\MDbg.0.1.0\lib\net40\NativeDebugWrappers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -59,6 +77,9 @@
     <Compile Include="Sender\ISender.cs" />
     <Compile Include="Sender\SenderStage.cs" />
     <Compile Include="Shtirlitz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
