@@ -45,6 +45,7 @@
     <Compile Include="ClipboardCopierTests.cs" />
     <Compile Include="Dummies\DummyReporter.cs" />
     <Compile Include="Dummies\DummySender.cs" />
+    <Compile Include="ProcessCpuUsageReporterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShtirlitzBaseTestClass.cs" />
     <Compile Include="ShtirlitzTests.cs" />
