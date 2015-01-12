@@ -49,6 +49,14 @@
     <Compile Include="Reporter\TimeReporter\CurrentTimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\ITimeProvider.cs" />
     <Compile Include="Reporter\TimeReporter\TimeReporter.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\IMultiTracer.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\MultipleTraceRouteReporter.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\Trace\ITracer.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\MultiTracer.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\Trace\PingException.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\Trace\RouteEntry.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\Trace\Tracer.cs" />
+    <Compile Include="Reporter\TraceRouteReporter\Trace\TracertEntry.cs" />
     <Compile Include="Reporter\WmiDumper.cs" />
     <Compile Include="Sender\ArchiveRemover.cs" />
     <Compile Include="Sender\ClipboardCopier.cs" />

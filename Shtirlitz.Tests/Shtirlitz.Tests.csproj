@@ -51,6 +51,8 @@
     <Compile Include="StageRunnerTests.cs" />
     <Compile Include="ThreadsDumpReporterTest.cs" />
     <Compile Include="TimeReporterTests.cs" />
+    <Compile Include="TraceRouteReporterTests\MultipleTraceRouteReporterTests.cs" />
+    <Compile Include="TraceRouteReporterTests\MultiTracerTests.cs" />
     <Compile Include="WmiDumperTests.cs" />
   </ItemGroup>
   <ItemGroup>
