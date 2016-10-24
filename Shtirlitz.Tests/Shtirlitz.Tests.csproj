@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ArchiveRemoverTests.cs" />
     <Compile Include="ClipboardCopierTests.cs" />
+    <Compile Include="CurrentTimeReporterTest.cs" />
     <Compile Include="Dummies\DummyReporter.cs" />
     <Compile Include="Dummies\DummySender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
