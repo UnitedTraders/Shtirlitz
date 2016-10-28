@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporter\PingReporter\IPingReporterProvider.cs" />
     <Compile Include="Reporter\PingReporter\PingProvider.cs" />
+    <Compile Include="Reporter\PingReporter\PingReporter.cs" />
     <Compile Include="Reporter\PingReporter\PingResult.cs" />
     <Compile Include="Reporter\PingReporter\TraceProvider.cs" />
     <Compile Include="Reporter\ThreadsDumpReporter\ThreadDump.cs" />
