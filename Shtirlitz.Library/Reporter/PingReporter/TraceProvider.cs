@@ -26,7 +26,6 @@ namespace Shtirlitz.Reporter.PingReporter
             _count = count;
             _currCount = count;
 
-            _finalIp = GetFinalIp();
             _stat = new Dictionary<IPAddress, PingResult>();
             _lost = new Dictionary<int, int>();
         }
@@ -35,8 +34,7 @@ namespace Shtirlitz.Reporter.PingReporter
         {
             var result = false;
 
-            if (_finalIp != null
-                && _currCount > 0)
+            if (_currCount > 0)
             {
                 var isfinal = SendPing();
 
@@ -57,7 +55,6 @@ namespace Shtirlitz.Reporter.PingReporter
         private readonly string _host;
         private readonly int _jumps;
         private readonly int _timeout;
-        private readonly IPAddress _finalIp;
         private readonly Dictionary<IPAddress, PingResult> _stat;
         private readonly Dictionary<int, int> _lost;
         private readonly int _count;
@@ -73,12 +70,13 @@ namespace Shtirlitz.Reporter.PingReporter
             using (var ping = new Ping())
             {
                 var pingResult = ping.Send(_host, _timeout, new byte[0], new PingOptions() {Ttl = _currJumps + 1});
-                if (pingResult?.Status == IPStatus.Success)
+                if (pingResult?.Status == IPStatus.Success
+                    || pingResult?.Status == IPStatus.TtlExpired)
                 {
                     var curr = UpdateStat(pingResult);
                     UpdateCurrent(curr);
 
-                    result = Equals(pingResult.Address, _finalIp);
+                    result = pingResult.Status == IPStatus.Success;
                 }
                 else
                 {
@@ -140,19 +138,6 @@ namespace Shtirlitz.Reporter.PingReporter
                 Lost = source.Lost,
                 RoundtripTime = source.RoundtripTime
             };
-        }
-
-        private IPAddress GetFinalIp()
-        {
-            IPAddress result = null;
-
-            using (var ping = new Ping())
-            {
-                var pingResult = ping.Send(_host, _timeout);
-                if (pingResult?.Status == IPStatus.Success)
-                    result = pingResult.Address;
-            }
-            return result;
         }
     }
 }

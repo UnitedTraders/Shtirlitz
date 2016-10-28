@@ -54,6 +54,7 @@
     <Compile Include="Reporter\PingReporter\Intergration\TestPingProvider.cs" />
     <Compile Include="Reporter\PingReporter\Intergration\TestPingReporter.cs" />
     <Compile Include="Reporter\PingReporter\Intergration\TestTraceProvider.cs" />
+    <Compile Include="Reporter\PingReporter\Intergration\TestTraceToYaRu.cs" />
     <Compile Include="ShtirlitzBaseTestClass.cs" />
     <Compile Include="ShtirlitzTests.cs" />
     <Compile Include="StageRunnerTests.cs" />
