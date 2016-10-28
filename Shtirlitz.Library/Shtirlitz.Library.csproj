@@ -48,6 +48,7 @@
     <Compile Include="Reporter\PingReporter\IPingReporterProvider.cs" />
     <Compile Include="Reporter\PingReporter\PingProvider.cs" />
     <Compile Include="Reporter\PingReporter\PingResult.cs" />
+    <Compile Include="Reporter\PingReporter\TraceProvider.cs" />
     <Compile Include="Reporter\ThreadsDumpReporter\ThreadDump.cs" />
     <Compile Include="Reporter\ThreadsDumpReporter\ThreadsDumpReporter.cs" />
     <Compile Include="Reporter\TimeReporter\CurrentTimeProvider.cs" />
