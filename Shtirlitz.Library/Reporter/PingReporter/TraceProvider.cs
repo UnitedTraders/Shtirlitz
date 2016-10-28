@@ -7,6 +7,16 @@ namespace Shtirlitz.Reporter.PingReporter
     public class TraceProvider : IPingReporterProvider
     {
         public PingResult Current { get; private set; }
+        public double Weight
+        {
+            get
+            {
+                var result = 1;
+                if (_count > 0)
+                    result = 100 * _currCount / _count;
+                return result;
+            }
+        }
 
         public TraceProvider(string host, int jumps, int timeout, int count)
         {
@@ -14,6 +24,7 @@ namespace Shtirlitz.Reporter.PingReporter
             _jumps = jumps;
             _timeout = timeout;
             _count = count;
+            _currCount = count;
 
             _finalIp = GetFinalIp();
             _stat = new Dictionary<IPAddress, PingResult>();
@@ -25,7 +36,7 @@ namespace Shtirlitz.Reporter.PingReporter
             var result = false;
 
             if (_finalIp != null
-                && _count > 0)
+                && _currCount > 0)
             {
                 var isfinal = SendPing();
 
@@ -34,7 +45,7 @@ namespace Shtirlitz.Reporter.PingReporter
                     || isfinal)
                 {
                     _currJumps = 0;
-                    _count--;
+                    _currCount--;
                 }
 
                 result = true;
@@ -49,7 +60,8 @@ namespace Shtirlitz.Reporter.PingReporter
         private readonly IPAddress _finalIp;
         private readonly Dictionary<IPAddress, PingResult> _stat;
         private readonly Dictionary<int, int> _lost;
-        private int _count;
+        private readonly int _count;
+        private int _currCount;
 
         private int _currJumps;
 

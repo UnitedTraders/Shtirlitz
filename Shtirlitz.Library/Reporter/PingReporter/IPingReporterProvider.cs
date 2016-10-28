@@ -4,5 +4,6 @@
     {
         bool Next();
         PingResult Current { get; }
+        double Weight { get; }
     }
 }

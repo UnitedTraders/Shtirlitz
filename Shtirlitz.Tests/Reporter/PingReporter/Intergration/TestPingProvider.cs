@@ -35,5 +35,17 @@ namespace Shtirlitz.Tests.Reporter.PingReporter.Intergration
 
             Expect(actual, EqualTo(expected));
         }
+
+        [Test]
+        public void TestWeight()
+        {
+            const double expected = 50;
+
+            IPingReporterProvider ping = new PingProvider("localhost", 2);
+            ping.Next();
+            var actual = ping.Weight;
+
+            Expect(actual, EqualTo(expected));
+        }
     }
 }

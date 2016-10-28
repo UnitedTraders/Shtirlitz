@@ -5,21 +5,32 @@ namespace Shtirlitz.Reporter.PingReporter
     public class PingProvider : IPingReporterProvider
     {
         public PingResult Current { get; private set; }
+        public double Weight
+        {
+            get
+            {
+                var result = 1;
+                if (_count > 0)
+                    result = 100 * _currCount / _count;
+                return result;
+            }
+        }
 
         public PingProvider(string host, int count)
         {
             _host = host;
             _count = count;
+            _currCount = count;
         }
 
         public bool Next()
         {
             var result = false;
 
-            if (_count > 0)
+            if (_currCount > 0)
             {
                 result = SendPing();
-                _count--;
+                _currCount--;
             }
 
             return result;
@@ -58,7 +69,8 @@ namespace Shtirlitz.Reporter.PingReporter
         }
 
         private readonly string _host;
-        private int _count;
+        private readonly int _count;
+        private int _currCount;
 
         private int _send;
         private int _receive;

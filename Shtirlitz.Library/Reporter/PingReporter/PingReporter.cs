@@ -6,7 +6,7 @@ namespace Shtirlitz.Reporter.PingReporter
 {
     public class PingReport : IReporter
     {
-        public double Weight { get; }
+        public double Weight => _provider.Weight;
         public string Name => "Ping/Trace reporter";
 
         public PingReport(IPingReporterProvider provider)
