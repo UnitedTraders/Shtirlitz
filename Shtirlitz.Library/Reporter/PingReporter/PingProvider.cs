@@ -18,15 +18,17 @@ namespace Shtirlitz.Reporter.PingReporter
 
             if (_count > 0)
             {
-                result = SendPing(result);
+                result = SendPing();
                 _count--;
             }
 
             return result;
         }
 
-        private bool SendPing(bool result)
+        private bool SendPing()
         {
+            var result = false;
+
             using (var ping = new Ping())
             {
                 var pingResult = ping.Send(_host);
