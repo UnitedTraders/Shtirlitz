@@ -29,7 +29,8 @@ namespace Shtirlitz.WPF
 
         public void DoCanExecuteChanged(object sender)
         {
-            CanExecuteChanged?.Invoke(sender ?? this, new EventArgs());
+            if (CanExecuteChanged != null)
+                CanExecuteChanged.Invoke(sender ?? this, new EventArgs());
         }
 
         public event EventHandler CanExecuteChanged;
