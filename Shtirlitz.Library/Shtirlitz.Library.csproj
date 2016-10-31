@@ -36,10 +36,14 @@
     <Reference Include="Ionic.Zip">
       <HintPath>$(SolutionDir)packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archiver\DotNetZipArchiver.cs" />
@@ -52,6 +56,9 @@
     <Compile Include="Reporter\WmiDumper.cs" />
     <Compile Include="Sender\ArchiveRemover.cs" />
     <Compile Include="Sender\ClipboardCopier.cs" />
+    <Compile Include="WPF\Informer.xaml.cs">
+      <DependentUpon>Informer.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,7 +69,12 @@
       <Name>Shtirlitz</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="WPF\Informer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
